@@ -1,0 +1,22 @@
+.Current {
+    margin: 30px;
+    text-align: left;
+    display: flex;
+    padding: 15px;
+    border-radius: 15px;
+    box-shadow: 64px 27px 100px 41px rgba(0, 0, 0, 0.2);
+}
+.general-info {
+    margin-left: 0;
+    width: 45%;
+}
+#temp {
+    font-size: 35px;
+}
+#description {
+    font-size: 20px;
+}
+.other-info {
+    margin: 0 0 0 40px;
+    width: 45%;
+}
