@@ -6,7 +6,7 @@ import "./search.css";
 import Current from "./Current";
 import axios from "axios";
 import Location from "./Location";
-import FormattedDate from "./FormattedDate";
+// import FormattedDate from "./FormattedDate";
 
 export default function Search(props){
     const [weatherData, setWeatherData] = useState({ready: false});
