@@ -1,4 +1,4 @@
-.Current {
+.Current-weather-info {
     margin: 30px;
     text-align: left;
     display: flex;
@@ -19,4 +19,40 @@
 .other-info {
     margin: 0 0 0 40px;
     width: 45%;
+}
+.current-location {
+    margin: 30px;
+    white-space: nowrap;
+    padding-right: 15px;
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 8px;
+    display: flex;
+    color: var(--first-color);
+}
+.loc-icon {
+    padding: 8px;
+    margin: 8px;
+}
+.loc-text {
+    display: flex;
+    font-size: 20px;
+    font-family: sans-serif;
+}
+#location-icon {
+    font-size: 24px;
+}
+.time {
+    font-size: 30px;
+    margin: 50px;
+    font-weight: bold;
+}
+.timePlusLocation {
+    display: flex;
+}
+.temperature {
+    font-size: 28px;
+    font-weight: bold;
+}
+#description {
+    text-transform: capitalize;
 }

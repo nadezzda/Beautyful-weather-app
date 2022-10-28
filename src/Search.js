@@ -5,8 +5,6 @@ import { faLocationCrosshairs } from "@fortawesome/free-solid-svg-icons";
 import "./search.css";
 import Current from "./Current";
 import axios from "axios";
-import Location from "./Location";
-// import FormattedDate from "./FormattedDate";
 
 export default function Search(props){
     const [weatherData, setWeatherData] = useState({ready: false});
@@ -30,7 +28,7 @@ export default function Search(props){
     }
 
     function search() {
-        const apiKey = "e3d95195ebd5be820d2030b9b1c8249a";
+        const apiKey = "541ad989f3d72b003cfc2d792c937734";
         let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
         axios.get(apiUrl).then(handleResponse); 
     }
@@ -44,30 +42,33 @@ export default function Search(props){
         setCity(event.target.value);
     }
 
-    return(
-        <div className="all">
-            <div className="Search">
-                <p id="header">The only weather forecast you need</p>
-                <div className="form">
-                    <form id="search-form" onSubmit={handleSubmit}>
-                        <input type="search" placeholder="Enter the city..." className="search-input" onChange={cityChange}/>
-                        <button className="search-btn" type="submit">
-                        <FontAwesomeIcon icon={faMagnifyingGlass} id="search-icon" />
+    if(weatherData.ready) {
+        return(
+            <div className="all">
+                <div className="Search">
+                    <p id="header">The only weather forecast you need</p>
+                    <div className="form">
+                        <form id="search-form" onSubmit={handleSubmit}>
+                            <input type="search" placeholder="Enter the city..." className="search-input" onChange={cityChange}/>
+                            <button className="search-btn" type="submit">
+                            <FontAwesomeIcon icon={faMagnifyingGlass} id="search-icon" />
+                            </button>
+                        </form>
+                        <button className="current-loc-btn">
+                            <FontAwesomeIcon icon={faLocationCrosshairs} id="search-loc-icon" />
                         </button>
-                    </form>
-                    <button className="current-loc-btn">
-                        <FontAwesomeIcon icon={faLocationCrosshairs} id="search-loc-icon" />
-                    </button>
+                    </div>
+                </div>
+                <div className="Info">
+                    <Current data={weatherData} />
+                    {/*forecast*/}
                 </div>
             </div>
-            <div className="Info">
-                {/* <div className="time">
-                    <h2>Last update: </h2>
-                    <h2 className="date"><FormattedDate date={weatherData.date} /></h2>
-                </div> */}
-                <Location data={weatherData} />
-                <Current data={weatherData} />
-            </div>
-        </div>
-    );
+        );
+    } else {
+        search();
+        return (
+          "Loading..."  
+        );
+    } 
 }
