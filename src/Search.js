@@ -9,6 +9,7 @@ import axios from "axios";
 export default function Search(props){
     const [weatherData, setWeatherData] = useState({ready: false});
     const [city, setCity] = useState(props.defaultCity);
+    const apiKey = "541ad989f3d72b003cfc2d792c937734";
 
     function handleResponse(response) {
         setWeatherData({
@@ -28,7 +29,6 @@ export default function Search(props){
     }
 
     function search() {
-        const apiKey = "541ad989f3d72b003cfc2d792c937734";
         let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
         axios.get(apiUrl).then(handleResponse); 
     }
@@ -41,6 +41,16 @@ export default function Search(props){
     function cityChange(event){
         setCity(event.target.value);
     }
+    function cityByCoords(event){
+        event.preventDefault();
+        function handlePosition(position){
+            let lat = position.coords.latitude;
+            let lon = position.coords.longitude;
+            let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}`;
+            axios.get(apiUrl).then(handleResponse);
+          }
+        navigator.geolocation.getCurrentPosition(handlePosition)
+        }
 
     if(weatherData.ready) {
         return(
@@ -54,7 +64,7 @@ export default function Search(props){
                             <FontAwesomeIcon icon={faMagnifyingGlass} id="search-icon" />
                             </button>
                         </form>
-                        <button className="current-loc-btn">
+                        <button className="current-loc-btn" onClick={cityByCoords}>
                             <FontAwesomeIcon icon={faLocationCrosshairs} id="search-loc-icon" />
                         </button>
                     </div>
