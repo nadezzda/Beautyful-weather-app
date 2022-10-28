@@ -9,11 +9,12 @@
     background-image: url(https://images.pexels.com/photos/2894944/pexels-photo-2894944.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2);
 }
 #header {
-    font-size: 30px;
+    font-size: 24px;
     text-transform: capitalize;
     color: var(--first-color);
     font-family: sans-serif;
-    margin-top: 250px;
+    margin-top: 270px;
+    font-family: 'Montserrat', sans-serif;
 }
 .form {
     display: flex;
@@ -27,7 +28,6 @@
     border-radius: 7px;
     border: none;
     outline: none; 
-
 }
 .search-input {
     height: 40px;
@@ -37,10 +37,11 @@
     color: var(--first-color);
     border: none;
     outline: none; 
-    font-size: 16px;
+    font-size: 12px;
 }
 .search-input::placeholder {
     color: var(--first-color);
+    font-family: 'Montserrat', sans-serif;
 }
 .search-btn {
     height: 40px;
@@ -49,7 +50,7 @@
     border: none;
 }
 #search-icon {
-    font-size: 22px;
+    font-size: 14px;
 }
 .current-loc-btn {
     height: 40px;
@@ -58,15 +59,11 @@
     border: none;
 }
 #search-loc-icon {
-    font-size: 26px;
+    font-size: 20px;
 }
 .Info {
     width: 40%;
-    font-family: sans-serif;
-}
+    font-family: 'Montserrat', sans-serif;}
 .time {
     display: flex;
-}
-h1 {
-    margin-left: 50px;
 }

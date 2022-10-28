@@ -6,10 +6,11 @@ export default function FullDate(props) {
     let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "Oktober", "November", "December"];
     let month = months[props.data.getMonth()];
     let date = props.data.getDate();
+    let year = props.data.getFullYear();
 
     return(
-        <div>
-            {day}, {date} {month}
+        <div className="date">
+            {day} {date}, {month} {year}
         </div>
     );
 }

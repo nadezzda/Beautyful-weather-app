@@ -9,27 +9,27 @@ import axios from "axios";
 export default function Search(props){
     const [weatherData, setWeatherData] = useState({ready: false});
     const [city, setCity] = useState(props.defaultCity);
-    const apiKey = "541ad989f3d72b003cfc2d792c937734";
+    const apiKey = "73o7172cea30e38a3304ab4ff8bt0abf";
 
     function handleResponse(response) {
         setWeatherData({
             ready: true,
-            coordinates: response.data.coord,
-            temperature: response.data.main.temp,
-            city: response.data.name,
-            country: response.data.sys.country,
+            coordinates: response.data.coordinates,
+            temperature: response.data.temperature.current,
+            city: response.data.city,
+            country: response.data.country,
             wind: response.data.wind.speed,
-            humidity: response.data.main.humidity,
-            description: response.data.weather[0].description,
-            icon: response.data.weather[0].icon,
-            date: new Date(response.data.dt * 1000),
-            feel: response.data.main.feels_like,
+            humidity: response.data.temperature.humidity,
+            description: response.data.condition.description,
+            icon: response.data.condition.icon_url,
+            date: new Date(response.data.time * 1000),
+            feel: response.data.temperature.feels_like,
 
         });
     }
 
     function search() {
-        let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+        let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
         axios.get(apiUrl).then(handleResponse); 
     }
 
@@ -46,7 +46,7 @@ export default function Search(props){
         function handlePosition(position){
             let lat = position.coords.latitude;
             let lon = position.coords.longitude;
-            let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}`;
+            let apiUrl = `https://api.shecodes.io/weather/v1/current?lon=${lon}&lat=${lat}&key=${apiKey}&units=metric`;
             axios.get(apiUrl).then(handleResponse);
           }
         navigator.geolocation.getCurrentPosition(handlePosition)
