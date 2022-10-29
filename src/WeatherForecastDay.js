@@ -1,36 +1,37 @@
 import React from "react";
-// import WeatherIcon from "./WeatherIcon";
+import Temperature from "./Temperature";
 
 export default function WeatherForecastDay(props) {
-    console.log(props)
-function maxTemp() {
-    let temp = Math.round(props.data.temp.max);
-    return `${temp}°`;
-}
-function minTemp() {
-    let temp = Math.round(props.data.temp.min);
-    return `${temp}°`;
-}
+    let date = new Date(props.data.time * 1000);
 
-function day() {
-    let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-    let date = new Date(props.data.dt * 1000);
-    let day = date.getDay();
-    return( days[day]);
-}
 
-   return(
-    <div>
-    <div className="forecast-day">
-                  {day()}   
-                </div>
-                <div className="forecast-icon">
-                {/* <WeatherIcon code={props.data.weather[0].icon} size={36} /> */}
-                </div> 
-                <div className="forecast-temperature">
-                    <span className="forecast-temperature-max">{maxTemp()}</span>
-                    <span className="forecast-temperature-min">{minTemp()}</span>
-                </div>
-    </div>
-   ) ;
+    function day() {
+        let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+        let day = date.getDay();
+        return( days[day]);
+    }
+    function month() {
+        let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+        let month = date.getMonth();
+        return( months[month]);    
+    }
+    function dat() {
+        let dat = date.getDate();
+        return( dat );
+    }
+
+    return(
+        <div className="one-day">
+            <div className="forecast-temperature-icon">                
+                <Temperature celsius={props.data.temperature.day} />
+                <img src={props.data.condition.icon_url} id="forecast-icon" alt="weather icon"/>
+            </div>
+            <div className="forecast-description">
+                <p id="forecast-description">{props.data.condition.description}</p>
+            </div> 
+            <div className="forecast-day">
+                {day()} {dat()}, {month()}
+            </div>
+        </div>
+    ) ;
 }

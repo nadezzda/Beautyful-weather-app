@@ -1,0 +1,38 @@
+.one-day {
+    padding: 15px;
+    border-radius: 15px;
+    box-shadow: 64px 27px 100px 41px rgba(0, 0, 0, 0.2);
+    font-family: 'Montserrat', sans-serif;
+    width: 120px;
+}
+.daily {
+    display: inline-flex;
+    margin: 10px;
+}
+
+#forecast-description {
+    text-transform: capitalize;
+    font-size: 16px;
+}
+#forecast-icon {
+    height: 40px;
+    margin-left: 15px;
+    margin-top: 20px;
+}
+.forecast-day {
+    font-size: 12px;
+}
+.forecast-temperature-icon .temp {
+    font-size: 20px;
+}
+.forecast-temperature-icon .units {
+    font-size: 12px;
+    padding-top: 15px;
+}
+.forecast-temperature-icon .temperature {
+    display: inline-flex;
+}
+
+.forecast-temperature-icon {
+    display: inline-flex;
+}

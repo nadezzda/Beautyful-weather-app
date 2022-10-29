@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function FullDate(props) {
+export default function Date(props) {
     let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     let day = days[props.data.getDay()];
     let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "Oktober", "November", "December"];
