@@ -22,7 +22,7 @@ export default function Current(props){
                 <Date data={props.data.date} />
                 <div className="general-info">
                     <Temperature celsius={props.data.temperature} />
-                    <img src={props.data.icon} id="icon" />
+                    <img src={props.data.icon} id="icon" alt="weather icon"/>
                 </div>
                 <p id="description">{props.data.description}</p>
                 <div className="other-info">

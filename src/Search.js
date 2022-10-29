@@ -5,6 +5,8 @@ import { faLocationCrosshairs } from "@fortawesome/free-solid-svg-icons";
 import "./search.css";
 import Current from "./Current";
 import axios from "axios";
+// import WeatherForecast from "./WeatherForecast";
+
 
 export default function Search(props){
     const [weatherData, setWeatherData] = useState({ready: false});
@@ -71,14 +73,14 @@ export default function Search(props){
                 </div>
                 <div className="Info">
                     <Current data={weatherData} />
-                    {/*forecast*/}
+                    {/* <WeatherForecast coordinates={weatherData.coordinates} /> */}
                 </div>
             </div>
         );
     } else {
         search();
         return (
-          "Loading..."  
+            "Load.."
         );
     } 
 }
