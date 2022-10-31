@@ -14,3 +14,15 @@ body {
     box-shadow: 64px 27px 100px 41px rgba(0, 0, 0, 0.4);
     background-color: white;
 }
+@media (max-width: 1300px) {
+    .Weather {
+        width: 90%;
+        height: 100%;
+        margin-top: 70px;   
+    }
+}
+@media (max-width: 500px) {
+    .Weather {
+        margin-top: 50px;
+    }
+}

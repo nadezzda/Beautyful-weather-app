@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from 'react-dom/client';
-import './index.css';
+import './styles/index.css';
 import reportWebVitals from './reportWebVitals';
 import Search from './Search';
 
@@ -8,7 +8,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
   <div className="Weather">
-        <Search defaultCity="Braunschweig"     defaultImage="url(https://images.pexels.com/photos/2894944/pexels-photo-2894944.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2)"/>
+        <Search defaultCity="Braunschweig"/>
   </div>  
   </React.StrictMode>
 );
