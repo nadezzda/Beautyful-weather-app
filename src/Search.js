@@ -12,8 +12,11 @@ export default function Search(props){
     const [weatherData, setWeatherData] = useState({ready: false});
     const [city, setCity] = useState(props.defaultCity);
     const apiKey = "73o7172cea30e38a3304ab4ff8bt0abf";
+    const [query, setQuery] = useState("few clouds");
+
 
     function handleResponse(response) {
+        setQuery(response.data.condition.description);
         setWeatherData({
             ready: true,
             coordinates: response.data.coordinates,
@@ -26,10 +29,9 @@ export default function Search(props){
             icon: response.data.condition.icon_url,
             date: new Date(response.data.time * 1000),
             feel: response.data.temperature.feels_like,
-
         });
-    }
 
+    }
     function search() {
         let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
         axios.get(apiUrl).then(handleResponse); 
@@ -43,6 +45,7 @@ export default function Search(props){
     function cityChange(event){
         setCity(event.target.value);
     }
+
     function cityByCoords(event){
         event.preventDefault();
         function handlePosition(position){
@@ -50,10 +53,30 @@ export default function Search(props){
             let lon = position.coords.longitude;
             let apiUrl = `https://api.shecodes.io/weather/v1/current?lon=${lon}&lat=${lat}&key=${apiKey}&units=metric`;
             axios.get(apiUrl).then(handleResponse);
-          }
-        navigator.geolocation.getCurrentPosition(handlePosition)
         }
-
+        navigator.geolocation.getCurrentPosition(handlePosition);
+    }
+    function changeDescription() {
+        let map = new Map();
+        map.set("clear sky", ["https://images.pexels.com/photos/281260/pexels-photo-281260.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2", "https://images.pexels.com/photos/6195041/pexels-photo-6195041.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2", "https://images.pexels.com/photos/6510358/pexels-photo-6510358.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2","https://images.pexels.com/photos/4996846/pexels-photo-4996846.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"]);
+        map.set("few clouds", ["https://images.pexels.com/photos/53594/blue-clouds-day-fluffy-53594.jpeg", "https://images.pexels.com/photos/86695/sky-clouds-outdoors-scenic-86695.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2", "https://images.pexels.com/photos/2985923/pexels-photo-2985923.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2","https://images.pexels.com/photos/416920/pexels-photo-416920.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"]);
+        map.set("scattered clouds", ["https://images.pexels.com/photos/4015182/pexels-photo-4015182.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2", "https://images.pexels.com/photos/12262726/pexels-photo-12262726.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2", "https://images.pexels.com/photos/2684011/pexels-photo-2684011.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2", "https://images.pexels.com/photos/2294054/pexels-photo-2294054.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"]);
+        map.set("broken clouds", ["https://images.pexels.com/photos/6334811/pexels-photo-6334811.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2","https://images.pexels.com/photos/10655631/pexels-photo-10655631.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2", "https://images.pexels.com/photos/13511276/pexels-photo-13511276.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2","https://images.pexels.com/photos/1755680/pexels-photo-1755680.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"]);
+        map.set("shower rain", ["https://images.pexels.com/photos/913807/pexels-photo-913807.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2", "https://images.pexels.com/photos/1445335/pexels-photo-1445335.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2", "https://images.pexels.com/photos/2068411/pexels-photo-2068411.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2", "https://images.pexels.com/photos/5989062/pexels-photo-5989062.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"]);
+        map.set("rain", ["https://images.pexels.com/photos/913807/pexels-photo-913807.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2", "https://images.pexels.com/photos/1445335/pexels-photo-1445335.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2", "https://images.pexels.com/photos/2068411/pexels-photo-2068411.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2","https://images.pexels.com/photos/5989062/pexels-photo-5989062.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"]);
+        map.set("thunderstorm", ["https://images.pexels.com/photos/2226190/pexels-photo-2226190.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2", "https://images.pexels.com/photos/5191952/pexels-photo-5191952.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2", "https://images.pexels.com/photos/2499846/pexels-photo-2499846.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2","https://images.pexels.com/photos/13223339/pexels-photo-13223339.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"]);
+        map.set("snow", ["https://images.pexels.com/photos/235621/pexels-photo-235621.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2", "https://images.pexels.com/photos/1978126/pexels-photo-1978126.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2", "https://images.pexels.com/photos/1717212/pexels-photo-1717212.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2","https://images.pexels.com/photos/1693095/pexels-photo-1693095.jpeg?auto=compress&cs=tinysrgb&w=800"]);
+        map.set("mist", ["https://images.pexels.com/photos/691031/pexels-photo-691031.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2", "https://images.pexels.com/photos/2440061/pexels-photo-2440061.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2", "https://images.pexels.com/photos/7101497/pexels-photo-7101497.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2", "https://images.pexels.com/photos/7091540/pexels-photo-7091540.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"]);
+        let el = map.get(query);
+ 
+        function randomNumber() {
+            let numb = Math.floor(Math.random() * el.length);
+            return numb;
+        }
+        let image = `url(${el[randomNumber()]})`;
+        document.querySelector(".Search").style["background-image"] = image;
+    }
+    
     if(weatherData.ready) {
         return(
             <div className="all">
@@ -71,7 +94,7 @@ export default function Search(props){
                         </button>
                     </div>
                 </div>
-                <div className="Info">
+                <div className="Info" onLoad={changeDescription}>
                     <Current data={weatherData} />
                     <WeatherForecast coordinates={weatherData.coordinates} />
                 </div>

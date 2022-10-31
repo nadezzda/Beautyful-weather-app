@@ -8,7 +8,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
   <div className="Weather">
-        <Search defaultCity="Braunschweig" />
+        <Search defaultCity="Braunschweig"     defaultImage="url(https://images.pexels.com/photos/2894944/pexels-photo-2894944.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2)"/>
   </div>  
   </React.StrictMode>
 );
